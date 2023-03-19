@@ -4,6 +4,13 @@ class Roman:
     def __init__(self,roman=None,number=None):
         self.number = number
         self.roman = roman
+        if number is None and roman is None:
+            self.roman = ' '
+        if number is not None:
+            self.digits_to_roman()
+        else:
+            if roman is not None:
+                self.roman_to_digits()
 
 
     def is_roman(self):
@@ -29,7 +36,6 @@ class Roman:
         four = {'M':1,'MM':2,'MMM':3}
         if self.is_roman() is False:
             raise Exception ("Please enter a proper roman number with - or space after each element")       
-        
         if self.roman[0] == '-':
             roman_number='-'
             for i in self.roman:
@@ -52,7 +58,8 @@ class Roman:
             number = int(number)
         else:
             number = '-'+str(four.get(f,''))+str(three.get(th,0))+str(two.get(tw,0))+str(one.get(o,0))
-            number = int(number)   
+            number = int(number) 
+        self.number = number  
         return number
     
     def digits_to_roman(self):
@@ -157,8 +164,3 @@ class Roman:
         roman = Roman(rom)
         return roman   
     
-        
-
-
-        
-           
