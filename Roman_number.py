@@ -14,7 +14,7 @@ class Roman:
 
 
     def is_roman(self):
-        rom = re.compile(r'''(-)?([M]{0,4}[-]?[\s])?
+        rom = re.compile(r'''(-)?([M]{0,4}[-\s])?
         ([D][C]{0,4}[-\s]?|[C][D][-\s]?|[C][M][-\s]?|[C]{1,4}[-\s]?)?
         ([L][X]{0,4}[-\s]?|[X][L][-\s]?|[X][C][-\s]?|[X]{1,4}[-]?)?
         ([V][I]{0,4}|[I][V]|[I][X]|[I]{1,3})?''',re.VERBOSE) 
