@@ -14,6 +14,7 @@ class Roman:
 
 
     def is_roman(self):
+        self.roman = str(self.roman).upper()
         rom = re.compile(r'''(-)?([M]{0,4}[-\s])?
         ([D][C]{0,4}[-\s]?|[C][D][-\s]?|[C][M][-\s]?|[C]{1,4}[-\s]?)?
         ([L][X]{0,4}[-\s]?|[X][L][-\s]?|[X][C][-\s]?|[X]{1,4}[-]?)?
@@ -163,4 +164,24 @@ class Roman:
         rom = roman.digits_to_roman()
         roman = Roman(rom)
         return roman   
+    
+    def __eq__(self,roman):
+        if str(roman).isdigit(): 
+            return False
+        roman = Roman(roman)
+        if not roman.is_roman():
+            return False
+        ans=''
+        for i in self.roman:
+            if not str(i).isspace():
+                ans+=i
+        ans1=''
+        for i in roman.roman:
+            if not str(i).isspace():
+                ans1+=i
+
+        if ans==ans1:
+            return True
+        else:
+            return False
     
