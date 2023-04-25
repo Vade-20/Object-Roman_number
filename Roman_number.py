@@ -9,18 +9,20 @@ class Roman:
         if number is not None:
             self.digits_to_roman()
         else:
-            if roman is not None:
+            if self.is_roman():
                 self.roman_to_digits()
+            else:
+                raise Exception("Please enter a proper roman number")
 
 
     def is_roman(self):
         self.roman = str(self.roman).upper()
-        rom = re.compile(r'''(-)?([M]{0,4}[-\s])?
-        ([D][C]{0,4}[-\s]?|[C][D][-\s]?|[C][M][-\s]?|[C]{1,4}[-\s]?)?
-        ([L][X]{0,4}[-\s]?|[X][L][-\s]?|[X][C][-\s]?|[X]{1,4}[-]?)?
-        ([V][I]{0,4}|[I][V]|[I][X]|[I]{1,3})?''',re.VERBOSE) 
+        rom = re.compile(r'''^(-)?([M]{0,3}[-\s]?)?
+        ([D][C]{0,3}[-\s]?|[C][D][-\s]?|[C][M][-\s]?|[C]{1,3}[-\s]?)?
+        ([L][X]{0,3}[-\s]?|[X][L][-\s]?|[X][C][-\s]?|[X]{1,3}[-\s]?)?
+        ([V][I]{0,3}|[I][V]|[I][X]|[I]{1,3})?$''',re.VERBOSE) 
         data = rom.search(self.roman)
-        if data.group() is None:
+        if data is None:
             return False
         for i in self.roman:
             if i not in ['-','C','M','D','V','X','L','I',' ']:
@@ -48,10 +50,10 @@ class Roman:
                 if i not in [' ','-'] :
                     roman_number+=i 
 
-        rom = re.compile(r'''(-)?([M]{0,4}[-\s]?)?
-        ([D][C]{0,4}[-\s]?|[C][D][-\s]?|[C][M][-\s]?|[C]{1,4}[-\s]?)?
-        ([L][X]{0,4}[-\s]?|[X][L][-\s]?|[X][C][-\s]?|[X]{1,4}[-]?)?
-        ([V][I]{0,4}|[I][V]|[I][X]|[I]{1,3})?''',re.VERBOSE) 
+        rom = re.compile(r'''^(-)?([M]{0,3}[-\s]?)?
+        ([D][C]{0,3}[-\s]?|[C][D][-\s]?|[C][M][-\s]?|[C]{1,3}[-\s]?)?
+        ([L][X]{0,3}[-\s]?|[X][L][-\s]?|[X][C][-\s]?|[X]{1,3}[-]?)?
+        ([V][I]{0,3}|[I][V]|[I][X]|[I]{1,3})?$''',re.VERBOSE) 
         data = rom.search(roman_number)
         m,f,th,tw,o = data.groups()
         if m is  None:
@@ -185,4 +187,4 @@ class Roman:
             return True
         else:
             return False
-    
+
