@@ -169,22 +169,10 @@ class Roman:
    
     
     def __eq__(self,roman):
-        if str(roman).isdigit(): 
-            return False
-        roman = Roman(roman)
-        if not roman.is_roman():
-            return False
-        ans=''
-        for i in self.roman:
-            if not str(i).isspace():
-                ans+=i
-        ans1=''
-        for i in roman.roman:
-            if not str(i).isspace():
-                ans1+=i
-
-        if ans==ans1:
+        num1 = self.number
+        num2 = roman.number
+        if num1==num2:
             return True
         else:
             return False
-
+        
