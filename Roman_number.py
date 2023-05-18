@@ -1,19 +1,19 @@
 import re
 
 class Roman:
-    def __init__(self,roman=None,number=None):
-        self.number = number
-        self.roman = roman
-        if number is None and roman is None:
-            self.roman = ' '
-        if number is not None:
+    def __init__(self,roman=None):
+        if str(roman).isdigit():
+            self.number = roman
             self.digits_to_roman()
+        elif roman is None:
+            self.roman = ' '
+            self.number = 0
         else:
+            self.roman = roman
             if self.is_roman():
                 self.roman_to_digits()
             else:
                 raise Exception("Please enter a proper roman number")
-
 
     def is_roman(self):
         self.roman = str(self.roman).upper()
@@ -124,7 +124,7 @@ class Roman:
         num1 = self.roman_to_digits()
         num2 = roman.roman_to_digits()
         num = num1 + num2
-        roman = Roman(number=num)
+        roman = Roman(num)
         roman.digits_to_roman()
         return roman
     
@@ -134,12 +134,12 @@ class Roman:
         num2 = roman.roman_to_digits()
         if num1>num2:
             num = num1 - num2
-            roman = Roman(number=num)
+            roman = Roman(num)
             rom = roman.digits_to_roman()
             return roman
         else:
             num = num2 - num1
-            roman = Roman(number=num)
+            roman = Roman(num)
             rom1 = roman.digits_to_roman()
             rom = '-'
             for i in rom1:
@@ -152,7 +152,7 @@ class Roman:
         num1 = self.roman_to_digits()
         num2 = roman.roman_to_digits()
         num = num1 * num2
-        roman = Roman(number=num)
+        roman = Roman(num)
         rom = roman.digits_to_roman()
         roman = Roman(rom)
         return roman
@@ -162,7 +162,7 @@ class Roman:
         num1 = self.roman_to_digits()
         num2 = roman.roman_to_digits()
         num = int(num1 / num2)
-        roman = Roman(number=num)
+        roman = Roman(num)
         rom = roman.digits_to_roman()
         roman = Roman(rom)
         return roman   
@@ -175,4 +175,8 @@ class Roman:
             return True
         else:
             return False
+        
+    def __str__(self) -> str:
+        return self.roman
+
         
